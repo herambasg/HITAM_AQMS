@@ -204,3 +204,38 @@ footer {
   }
   header { text-align: center; }
 }
+
+/*
+  Media query for television screens to disable scrolling and optimize layout.
+  This targets devices with the 'tv' media type, which are typically high-resolution
+  and viewed from a distance.
+*/
+@media tv and (min-width: 1920px) {
+  html, body {
+    /* Prevent any scrolling on the page */
+    overflow: hidden;
+
+    /* Ensure the body and html fill the entire viewport height */
+    height: 100%;
+    width: 100%;
+
+    /* Optional: A slightly larger font size can improve readability from a distance */
+    font-size: 18px;
+  }
+
+  /*
+    You can add other TV-specific styles here.
+    For example, you might want to ensure your main layout container
+    also fills the screen.
+  */
+  main {
+    height: 100vh;
+    /* Ensure the grid layout remains as intended for large screens */
+    grid-template-columns: 250px 1fr; /* Example: Re-assert your desktop grid */
+  }
+
+  /* Ensure the logo and header are positioned appropriately for a static view */
+  #logo {
+    position: absolute; /* Or your preferred non-scrolling position */
+  }
+}
