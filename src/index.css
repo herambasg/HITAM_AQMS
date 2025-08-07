@@ -65,7 +65,7 @@ main {
   grid-template-rows: auto 1fr; /* Ensures rows fill vertical space */
   gap: 1.5rem;
   padding: 1.5rem;
-  overflow: hidden;
+  overflow: hidden; /* Important: Prevents internal scrolling */
 }
 
 #last-updated {
@@ -142,13 +142,14 @@ section h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Add a minimum height to ensure it's visible while loading */
   min-height: 150px; 
 }
 
 /* --- Sensor Grid Container (Right Column) --- */
 .sensor-grid-container {
   flex-grow: 1;
+  /* Add overflow: hidden to prevent grid items from overflowing their container */
+  overflow: hidden; 
 }
 
 .grid {
@@ -156,7 +157,7 @@ section h2 {
   grid-template-columns: repeat(2, 1fr); 
   grid-template-rows: repeat(3, 1fr);   
   gap: 1rem; 
-  flex-grow: 1;
+  height: 100%; /* Make the grid take the full height of its container */
 }
 
 .card {
@@ -193,9 +194,10 @@ footer {
   font-size: 0.9rem;
   flex-shrink: 0; 
   border-top: 1px solid #cbd5e1;
-  margin-top: auto; /* Pushes footer to the bottom of the flex container */
+  /* The margin-top: auto; property has been removed. */
 }
 
+/* --- Media Queries --- */
 /* Media query for smaller screens to re-enable scrolling */
 @media (max-width: 1200px), (max-height: 700px) {
   html, body {
@@ -214,11 +216,9 @@ footer {
   header { text-align: center; }
 }
 
-/* CORRECTED Media query for television screens */
+/* Media query for television screens */
 @media tv and (min-width: 1920px) {
   main {
-    /* Re-assert your desired grid layout for large screens */
-    /* NOTE: The incorrect height property has been removed. */
     grid-template-columns: 1fr 1fr; 
   }
 }
