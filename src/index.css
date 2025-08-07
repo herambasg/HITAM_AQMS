@@ -1,13 +1,206 @@
-body {
+/* --- General Styling for TV --- */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrolling on the body */
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  color: #1e293b;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* --- Header --- */
+header {
+  background: linear-gradient(90deg, #02c768, #0369a1);
+  color: white;
+  text-align: center;
+  padding: 2.5rem;
+  border-bottom: 5px solid #02c768;
+  position: relative;
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+header h1 {
+  margin-top: -1rem;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+header p {
+  font-size: 1.3rem;
+  color: #e0f2fe;
+  margin-bottom: -0.5rem;
+  padding-top: 0.5rem;
+}
+
+/* --- Logo Styling --- */
+#logo {
+  position: absolute;
+  top: 50%;
+  right: 220px;
+  transform: translateY(-50%);
+  height: 130px; /* Adjusted size */
+  width: auto;
+}
+
+/* --- Main Content --- */
+main {
+  flex-grow: 1; /* THIS IS THE CRITICAL LINE */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+#last-updated {
+  grid-column: 1 / -1; /* Span across both columns */
+  text-align: center;
+  color: #64748b;
+  font-size: 1.2rem;
+}
+
+/* --- Column Styling --- */
+.left-column {
+  display: grid; /* MODIFIED: Now a grid */
+  grid-template-columns: 1fr 1fr; /* MODIFIED: Two vertical sections */
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  height: 120%;
+}
+
+.left-column > section {
+  height: 120%; /* Make sections fill the grid cell height */
+}
+
+/* --- Card & Section Styling --- */
+section {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px -2px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0369a1;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* --- Main AQI Card Styling --- */
+.main-aqi-card {
+  background: #e0f7fa;
+  border-left: 6px solid #0284c7;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-aqi-card #calculated-aqi {
+  font-size: 6rem; /* Adjusted for space */
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.main-aqi-card #aqi-category {
+  font-size: 1.5rem; /* Adjusted for space */
+  font-weight: 600;
+  color: #0f766e;
+  text-align: center;
+}
+
+/* --- Comparison Widget --- */
+.aqi-comparison .aqi-widget {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Sensor Grid Container (Right Column) --- */
+.sensor-grid-container {
+  flex-grow: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* MODIFIED: 2 columns */
+  grid-template-rows: repeat(3, 1fr);    /* MODIFIED: 3 rows */
+  gap: 1rem; /* Increased gap */
+  flex-grow: 1;
+}
+
+.card {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card h3 {
+  color: #0ea5e9;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.card p {
+  font-size: 1.75rem; /* Adjusted for space */
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 0.75rem; /* Reduced padding */
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.9rem;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+  border-top: 1px solid #cbd5e1;
+  margin-top: auto;
+}
+
+/* Media query for smaller screens to re-enable scrolling */
+@media (max-width: 1200px), (max-height: 700px) {
+  html, body {
+      height: auto;
+      overflow: auto;
+  }
+  main, .left-column {
+      grid-template-columns: 1fr;
+  }
+  #logo {
+      position: static;
+      transform: none;
+      height: 60px;
+      margin: 0 auto 1rem;
+  }
+  header { text-align: center; }
 }
