@@ -17,9 +17,10 @@ html, body {
   height: 100%;
 }
 
+/* --- MODIFIED: Using CSS Grid for the main page layout --- */
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, Main (fills space), Footer */
   height: 100%;
 }
 
@@ -31,7 +32,7 @@ header {
   padding: 2.5rem;
   border-bottom: 5px solid #02c768;
   position: relative;
-  flex-shrink: 0; /* Prevent header from shrinking */
+  /* flex-shrink: 0; -- No longer needed in Grid layout */
 }
 
 header h1 {
@@ -59,17 +60,17 @@ header p {
 
 /* --- Main Content --- */
 main {
-  flex-grow: 1; 
+  /* flex-grow: 1; -- No longer needed in Grid layout */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr; /* Ensures rows fill vertical space */
+  grid-template-rows: auto 1fr; 
   gap: 1.5rem;
   padding: 1.5rem;
   overflow: hidden; /* Important: Prevents internal scrolling */
 }
 
 #last-updated {
-  grid-column: 1 / -1; /* Span across both columns */
+  grid-column: 1 / -1; 
   text-align: center;
   color: #64748b;
   font-size: 1.1rem;
@@ -83,16 +84,18 @@ main {
   grid-template-columns: 1fr 1fr; 
   gap: 1.5rem;
   height: 100%;
+  overflow: hidden; /* Added precaution */
 }
 
 .right-column {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden; /* Added precaution */
 }
 
 .left-column > section {
-  height: 100%; /* Make sections fill the grid cell height */
+  height: 100%; 
 }
 
 /* --- Card & Section Styling --- */
@@ -148,7 +151,6 @@ section h2 {
 /* --- Sensor Grid Container (Right Column) --- */
 .sensor-grid-container {
   flex-grow: 1;
-  /* Add overflow: hidden to prevent grid items from overflowing their container */
   overflow: hidden; 
 }
 
@@ -157,7 +159,7 @@ section h2 {
   grid-template-columns: repeat(2, 1fr); 
   grid-template-rows: repeat(3, 1fr);   
   gap: 1rem; 
-  height: 100%; /* Make the grid take the full height of its container */
+  height: 100%;
 }
 
 .card {
@@ -192,9 +194,8 @@ footer {
   background: #e2e8f0;
   color: #475569;
   font-size: 0.9rem;
-  flex-shrink: 0; 
   border-top: 1px solid #cbd5e1;
-  /* The margin-top: auto; property has been removed. */
+  /* flex-shrink: 0; -- No longer needed in Grid layout */
 }
 
 /* --- Media Queries --- */
@@ -203,6 +204,9 @@ footer {
   html, body {
       height: auto;
       overflow: auto;
+  }
+  .dashboard-container {
+      display: block; /* Revert to default block display */
   }
   main, .left-column {
       grid-template-columns: 1fr;
